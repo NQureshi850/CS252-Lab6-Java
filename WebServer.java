@@ -35,7 +35,7 @@ public class WebServer {
             
             String httpResponse = "";
             for (String key : parameters.keySet())
-            	httpResponse += key + " = " + parameters.get(key) + "\n";
+            	httpResponse += key /*+ " = " + parameters.get(key)*/ + "\n";
             he.sendResponseHeaders(200, httpResponse.length());
             OutputStream os = he.getResponseBody();
             os.write(httpResponse.toString().getBytes());
@@ -57,7 +57,7 @@ public class WebServer {
             
             String httpResponse = "";
             for (String key : parameters.keySet())
-            	httpResponse += key + " = " + parameters.get(key) + "\n";
+            	httpResponse += key + /*" = " + parameters.get(key) + */"\n";
             he.sendResponseHeaders(200, httpResponse.length());
             OutputStream os = he.getResponseBody();
             os.write(httpResponse.toString().getBytes());
