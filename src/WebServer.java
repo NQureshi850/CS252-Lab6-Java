@@ -46,7 +46,10 @@ public class WebServer {
 			{
 				String httpResponse = "";
 				for (String key : parameters.keySet())
+				{
 					httpResponse += key /*+ " = " + parameters.get(key)*/ + "\n";
+					System.out.println(key);
+				}
 				he.sendResponseHeaders(200, httpResponse.length());
 				OutputStream os = he.getResponseBody();
 				os.write(httpResponse.toString().getBytes());
