@@ -11,18 +11,18 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/commons-logging-1.1.3.jar"/>
-	<classpathentry kind="lib" path="src/httpclient-4.3.6.jar"/>
-	<classpathentry kind="lib" path="src/httpcore-4.3.3.jar"/>
-	<classpathentry kind="lib" path="src/jackson-mapper-asl-1.9.13.jar"/>
-	<classpathentry kind="lib" path="src/jackson-core-asl-1.9.13.jar"/>
-	<classpathentry kind="lib" path="src/mysql-connector-java-5.1.6.jar"/>
-	<classpathentry kind="lib" path="src/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="src/http-20070405.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="firebase4j-master/libs/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="firebase4j-master/libs/http-20070405.jar"/>
+	<classpathentry kind="lib" path="firebase4j-master/libs/httpclient-4.3.6.jar"/>
+	<classpathentry kind="lib" path="firebase4j-master/libs/httpcore-4.3.3.jar"/>
+	<classpathentry kind="lib" path="firebase4j-master/libs/jackson-core-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="firebase4j-master/libs/jackson-mapper-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="firebase4j-master/libs/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="firebase4j-master/libs/mysql-connector-java-5.1.6.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
