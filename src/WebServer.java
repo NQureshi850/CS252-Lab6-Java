@@ -52,7 +52,10 @@ public class WebServer {
 						System.out.println(part);
 						String data[] = part.split(":");
 						
-						
+						if(data[1].charAt(0) == '\"' && data[1].charAt(data[1].length()) == '\"')
+						{
+							
+						}
 						
 					}
 				}
