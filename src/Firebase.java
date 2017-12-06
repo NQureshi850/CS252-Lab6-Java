@@ -1,14 +1,9 @@
-package net.thegreshams.firebase4j.service;
+
 
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.*;
 //import java.util.logging.Logger;
-
-import net.thegreshams.firebase4j.error.FirebaseException;
-import net.thegreshams.firebase4j.error.JacksonUtilityException;
-import net.thegreshams.firebase4j.model.FirebaseResponse;
-import net.thegreshams.firebase4j.util.JacksonUtility;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

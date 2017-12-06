@@ -10,8 +10,6 @@ import org.codehaus.jackson.map.JsonMappingException;
 import com.sun.net.httpserver.*;
 
 import net.thegreshams.firebase4j.error.*;
-import net.thegreshams.firebase4j.error.JacksonUtilityException;
-import net.thegreshams.firebase4j.service.Firebase;
 import net.thegreshams.firebase4j.model.*;
 
 import java.io.*;
