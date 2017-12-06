@@ -19,5 +19,10 @@
 	<classpathentry kind="lib" path="firebase4j-master/libs/jackson-mapper-asl-1.9.13.jar"/>
 	<classpathentry kind="lib" path="firebase4j-master/libs/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="firebase4j-master/libs/mysql-connector-java-5.1.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
