@@ -3,7 +3,6 @@
   <groupId>CS252_Lab6</groupId>
   <artifactId>CS252_Lab6</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>CS252_Lab6</name>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
