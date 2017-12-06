@@ -54,7 +54,7 @@ public class WebServer {
 						
 						if(data[1].charAt(0) == '\"' && data[1].charAt(data[1].length()) == '\"')
 						{
-							
+							data[1] = data[1].substring(1, data[1].length()-1);
 						}
 						
 					}
