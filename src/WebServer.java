@@ -31,28 +31,36 @@ public class WebServer {
 			String query = br.readLine();
 			int code = parseBody(query, parameters);
 
-			if(code == 0)
-			{
+			/*
 				String httpResponse = "You suck";
 				he.sendResponseHeaders(400, httpResponse.length());
 				OutputStream os = he.getResponseBody();
 				os.write(httpResponse.toString().getBytes());
 				os.close();
-			}
+			*/
 
-			else
-			{
+			
 				String httpResponse = "";
 				for (String key : parameters.keySet())
 				{
 					httpResponse += key /*+ " = " + parameters.get(key)*/ + "\n";
 					System.out.println(key);
+					key = key.substring(1,  key.length()-1);
+					String parts[] = key.split(",");
+					for(String part: parts)
+					{
+						System.out.println(part);
+						String data[] = part.split(":");
+						
+						
+						
+					}
 				}
 				he.sendResponseHeaders(200, httpResponse.length());
 				OutputStream os = he.getResponseBody();
 				os.write(httpResponse.toString().getBytes());
 				os.close();
-			}
+			
 
 		}
 
@@ -68,6 +76,7 @@ public class WebServer {
 			String query = br.readLine();
 			int code = parseBody(query, parameters);
 
+			/*
 			if(code == 0)
 			{
 				String httpResponse = "You suck";
@@ -76,17 +85,18 @@ public class WebServer {
 				os.write(httpResponse.toString().getBytes());
 				os.close();
 			}
-
-			else
-			{
+			*/
 				String httpResponse = "";
 				for (String key : parameters.keySet())
+				{
 					httpResponse += key + /*" = " + parameters.get(key) + */"\n";
+					System.out.println(key);
+				}
 				he.sendResponseHeaders(200, httpResponse.length());
 				OutputStream os = he.getResponseBody();
 				os.write(httpResponse.toString().getBytes());
 				os.close();
-			}
+		
 
 		} 
 	}
