@@ -24,5 +24,13 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="http-20070405.jar"/>
+	<classpathentry kind="lib" path="httpclient-4.3.6.jar"/>
+	<classpathentry kind="lib" path="jackson-mapper-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.6.jar"/>
+	<classpathentry kind="lib" path="httpcore-4.3.3.jar"/>
+	<classpathentry kind="lib" path="log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="jackson-core-asl-1.9.13.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
