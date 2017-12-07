@@ -1,18 +1,15 @@
 import java.util.*;
 
-import org.apache.http.*;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
+//import org.apache.http.*;
+//import org.codehaus.jackson.JsonParseException;
+//import org.codehaus.jackson.map.JsonMappingException;
 //import org.codehaus.jackson.map.deser.ValueInstantiators.Base;
 
 import com.sun.net.httpserver.*;
 
-<<<<<<< HEAD
 //import net.thegreshams.firebase4j.error.*;
 //import net.thegreshams.firebase4j.model.*;
 
-=======
->>>>>>> 66a865e9cbb8da6bf941fc3d21ac1401913c7f09
 import java.io.*;
 import java.net.*;
 
@@ -277,7 +274,7 @@ public class WebServer {
 		}
 	}
 
-	public static void main(String[] args) throws FirebaseException, JsonParseException, JsonMappingException, IOException, JacksonUtilityException, HttpException
+	public static void main(String[] args) throws FirebaseException, IOException
 	{
 		base = new Firebase("https://cs252-fc67c.firebaseio.com/");
 
