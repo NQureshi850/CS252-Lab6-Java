@@ -34,7 +34,7 @@ public class Demo {
 		// "DELETE" (the fb4jDemo-root)
 		//response = firebase.delete();
 	
-		response = firebase.get( "Minesweeper" );
+		response = firebase.get("TestGameAI");
 		System.out.println(response );
 		System.out.println("\n");
 		

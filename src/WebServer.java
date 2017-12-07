@@ -198,6 +198,7 @@ public class WebServer {
 				}
 				
 				temp = temp.substring(0, temp.length() - 1);
+				System.out.println("temp " + temp);
 				//FirebaseResponse[ (Success:true) (Code:200) (Body:{Person1=100, Person2=100}) (Raw-body:{"Person1":100,"Person2":100}) ]
 
 
