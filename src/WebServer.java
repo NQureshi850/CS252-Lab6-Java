@@ -202,7 +202,7 @@ public class WebServer {
 
 
 				responseString = temp;
-				httpResponse = "{\"scores\": [" + responseString + "]}";
+				httpResponse = "{\"scores\": {" + responseString + "}}";
 				System.out.println(httpResponse);
 
 			}
