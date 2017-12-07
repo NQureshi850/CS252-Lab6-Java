@@ -44,7 +44,7 @@ public class WebServer {
 				httpResponse += key /*+ " = " + parameters.get(key)*/ + "\n";
 				System.out.println("getUser" + key);
 				key = key.substring(1,  key.length()-1);
-				
+
 				String parts[] = key.split(",");
 				String username = parts[0];
 				String gameName = parts[1];
@@ -69,9 +69,9 @@ public class WebServer {
 				} catch (FirebaseException e) {
 					//e.printStackTrace();
 				}
-				
+
 				String responseString = response.toString();
-				
+
 				if(responseString.indexOf(username) == -1)
 				{
 					try {
@@ -81,48 +81,132 @@ public class WebServer {
 					} catch (FirebaseException e) {
 						e.printStackTrace();
 					}
-					
+
 					System.out.println("reached");
 					responseString = response.toString();
-					
+
 					responseString = responseString.substring(responseString.indexOf(username));
-					
+
 					responseString = responseString.substring(0, responseString.indexOf("Raw-body")-1);
 					System.out.println("Pre-responseString: " + responseString);
-					
+
 					if(responseString.indexOf(",") == -1)
 						responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf("})"));
-					
+
 					else
 						responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf(","));
 				}
-				
+
 				else
 				{
 					responseString = responseString.substring(responseString.indexOf(username));
-					
+
 					responseString = responseString.substring(0, responseString.indexOf("Raw-body")-1);
 					System.out.println("Pre-responseString: " + responseString);
 
-					
+
 					if(responseString.indexOf(",") == -1)
 						responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf("})"));
-					
+
 					else
 						responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf(","));
-					
+
 					System.out.println("ResponseString: " + responseString);
 
 				}
-				
 
-				
+
+
 				httpResponse = "{\"score\": " + responseString + "}";
 				System.out.println(httpResponse);
 
 			}
 
 			//FirebaseResponse[ (Success:true) (Code:200) (Body:{Person1=100, Person2=100}) (Raw-body:{"Person1":100,"Person2":100}) ]
+
+			he.sendResponseHeaders(200, httpResponse.length());
+			OutputStream os = he.getResponseBody();
+			os.write(httpResponse.toString().getBytes());
+			os.close();
+
+
+		}
+
+	}
+
+	static class getScoresForGameHandler implements HttpHandler 
+	{
+		public void handle(HttpExchange he) throws IOException 
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			InputStreamReader isr = new InputStreamReader(he.getRequestBody(), "utf-8");
+			BufferedReader br = new BufferedReader(isr);
+			String query = br.readLine();
+			int code = parseBody(query, parameters);
+
+			/*
+				String httpResponse = "You suck";
+				he.sendResponseHeaders(400, httpResponse.length());
+				OutputStream os = he.getResponseBody();
+				os.write(httpResponse.toString().getBytes());
+				os.close();
+			 */
+
+
+			String httpResponse = "";
+			for (String key : parameters.keySet())
+			{
+				httpResponse += key /*+ " = " + parameters.get(key)*/ + "\n";
+				System.out.println("getUser" + key);
+				key = key.substring(1,  key.length()-1);
+
+				String gameName = key;
+
+				gameName = gameName.substring(gameName.indexOf(":") + 2, gameName.length() -1);
+				System.out.println("game: " + gameName);
+
+				/*if(data[1].charAt(0) == '\"' && data[1].charAt(data[1].length()) == '\"')
+						{
+							data[1] = data[1].substring(1, data[1].length()-1);
+						}
+				 */
+
+				try {
+					response = base.get(gameName);
+				} catch (FirebaseException e) {
+					//e.printStackTrace();
+				}
+
+				String responseString = response.toString();
+
+				responseString = responseString.substring(0, responseString.indexOf("Raw-body")-1);
+				System.out.println("Pre-responseString: " + responseString);
+
+
+				responseString = responseString.substring(responseString.indexOf("{") + 1, responseString.indexOf("})"));
+
+				System.out.println("ResponseString: " + responseString);
+
+
+				String temp = "";
+				String individualScores[] = responseString.split(",");
+				
+				for(String score : individualScores)
+				{
+					String pairs[] = score.split("=");
+					temp += "\"" + pairs[0] + "\": " + pairs[1] + ",";
+				}
+				
+				temp = temp.substring(0, temp.length() - 1);
+				//FirebaseResponse[ (Success:true) (Code:200) (Body:{Person1=100, Person2=100}) (Raw-body:{"Person1":100,"Person2":100}) ]
+
+
+				responseString = temp;
+				httpResponse = "{\"scores\": [" + responseString + "]}";
+				System.out.println(httpResponse);
+
+			}
+
 
 			he.sendResponseHeaders(200, httpResponse.length());
 			OutputStream os = he.getResponseBody();
@@ -160,7 +244,7 @@ public class WebServer {
 				httpResponse += key + /*" = " + parameters.get(key) + */"\n";
 				System.out.println("update" + key);
 				key = key.substring(1,  key.length()-1);
-				
+
 				String parts[] = key.split(",");
 				String username = parts[0];
 				String gameName = parts[1];
@@ -178,12 +262,12 @@ public class WebServer {
 						}
 				 */
 
-				
+
 				System.out.println(username);
 				Map<String, Object> dataMap = new LinkedHashMap<String, Object>();
 				dataMap.put(username, toUpdate);
 
-			
+
 				try {
 					response = base.patch(gameName, dataMap);
 				} catch (FirebaseException e) {
@@ -191,13 +275,13 @@ public class WebServer {
 				} catch (JacksonUtilityException e) {
 					//e.printStackTrace();
 				}
-				
+
 				String responseString = response.toString();
 				System.out.println("Response " + responseString);
-				
+
 				httpResponse = "";
 				System.out.println(httpResponse);
-				
+
 
 			}
 			he.sendResponseHeaders(200, httpResponse.length());
@@ -294,6 +378,7 @@ public class WebServer {
 		server.createContext("/", new HomePageHandler());
 		server.createContext("/getUser", new getUserHandler());
 		server.createContext("/updateScore", new updateScoreHandler());
+		server.createContext("/getScoresForGame", new getScoresForGameHandler());
 		server.setExecutor(null);
 		server.start();
 
