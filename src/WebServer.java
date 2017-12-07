@@ -100,7 +100,7 @@ public class WebServer {
 				
 
 				
-				httpResponse = responseString;
+				httpResponse = "{score: " + responseString + "}";
 				System.out.println(httpResponse);
 
 			}
