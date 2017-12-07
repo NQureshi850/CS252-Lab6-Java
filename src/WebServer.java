@@ -213,11 +213,45 @@ public class WebServer {
 	{
 		public void handle(HttpExchange he) throws IOException 
 		{
-			String homepage = "<h1> Test Page </h1>";
-			he.sendResponseHeaders(200, homepage.length());
-			OutputStream os = he.getResponseBody();
-			os.write(homepage.getBytes());
-			os.close();
+//			File index = new File("../CS252-Lab6/index.html");
+//			FileReader fr = new FileReader(index);
+//			char[] buf = new char[8092];
+//			fr.read(buf);
+			
+			String rootPath = "../CS252-Lab6";
+			URI url = he.getRequestURI();
+			System.out.println(url);
+			String path = url.getPath();
+			if (path.equals("/")) {
+				path = "/index.html";
+			}
+			File file = new File(rootPath + path).getCanonicalFile();
+			
+			System.out.println(rootPath + path);
+			
+			if (!file.isFile()) {
+				System.out.println("Fail");
+			}
+			else {
+				// Object exists and is a file: accept with response code 200.
+	              String mime = "text/html";
+	              if(path.substring(path.length()-3).equals(".js")) mime = "application/javascript";
+	              if(path.substring(path.length()-3).equals("css")) mime = "text/css";            
+
+	              Headers h = he.getResponseHeaders();
+	              h.set("Content-Type", mime);
+	              he.sendResponseHeaders(200, 0);              
+
+	              OutputStream os = he.getResponseBody();
+	              FileInputStream fs = new FileInputStream(file);
+	              final byte[] buffer = new byte[0x10000];
+	              int count = 0;
+	              while ((count = fs.read(buffer)) >= 0) {
+	                os.write(buffer,0,count);
+	              }
+	              fs.close();
+	              os.close();
+			}
 
 		} 
 	}
