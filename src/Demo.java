@@ -13,7 +13,8 @@ public class Demo {
 
 		
 		// get the base-url (ie: 'http://gamma.firebase.com/username')
-		String firebase_baseUrl = null;
+		String firebase_baseUrl = "https://cs252-fc67c.firebaseio.com/";
+		FirebaseResponse response = null;
 		for( String s : args ) {
 
 			if( s == null || s.trim().isEmpty() ) continue;
@@ -31,9 +32,13 @@ public class Demo {
 		
 		
 		// "DELETE" (the fb4jDemo-root)
-		FirebaseResponse response = firebase.delete();
+		//response = firebase.delete();
 	
-
+		response = firebase.get( "Minesweeper" );
+		System.out.println(response );
+		System.out.println("\n");
+		
+		/*
 		// "PUT" (test-map into the fb4jDemo-root)
 		Map<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put( "PUT-root", "This was PUT into the fb4jDemo-root" );
@@ -81,7 +86,7 @@ public class Demo {
 		System.out.println( "\n\nResult of DELETE (for the test-DELETE):\n" + response );
 		response = firebase.get( "test-DELETE" );
 		System.out.println( "\n\nResult of GET (for the test-DELETE):\n" + response );
-		
+		*/
 	}
 	
 }
