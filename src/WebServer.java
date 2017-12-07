@@ -84,18 +84,37 @@ public class WebServer {
 						e.printStackTrace();
 					}
 					
+					System.out.println("reached");
 					responseString = response.toString();
 					
 					responseString = responseString.substring(responseString.indexOf(username));
-					responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf("})"));
-					System.out.println(responseString);
-
+					
+					responseString = responseString.substring(0, responseString.indexOf("Raw-body")-1);
+					System.out.println("Pre-responseString: " + responseString);
+					
+					if(responseString.indexOf(",") == -1)
+						responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf("})"));
+					
+					else
+						responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf(","));
 				}
 				
 				else
 				{
 					responseString = responseString.substring(responseString.indexOf(username));
-					responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf(","));
+					
+					responseString = responseString.substring(0, responseString.indexOf("Raw-body")-1);
+					System.out.println("Pre-responseString: " + responseString);
+
+					
+					if(responseString.indexOf(",") == -1)
+						responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf("})"));
+					
+					else
+						responseString = responseString.substring(responseString.indexOf("=") + 1, responseString.indexOf(","));
+					
+					System.out.println("ResponseString: " + responseString);
+
 				}
 				
 
@@ -178,7 +197,7 @@ public class WebServer {
 				String responseString = response.toString();
 				System.out.println("Response " + responseString);
 				
-				httpResponse = "OK";
+				httpResponse = "";
 				System.out.println(httpResponse);
 				
 
