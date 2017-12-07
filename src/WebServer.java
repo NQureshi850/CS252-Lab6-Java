@@ -302,7 +302,7 @@ public class WebServer {
 //			char[] buf = new char[8092];
 //			fr.read(buf);
 			
-			String rootPath = "../../CS252-Lab6";
+			String rootPath = "../CS252-Lab6";
 			URI url = he.getRequestURI();
 			System.out.println(url);
 			String path = url.getPath();
