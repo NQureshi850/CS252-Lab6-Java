@@ -1,16 +1,11 @@
 import java.util.*;
 
 import org.apache.http.*;
-import org.apache.http.impl.*;
-import org.apache.http.util.*;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 //import org.codehaus.jackson.map.deser.ValueInstantiators.Base;
 
 import com.sun.net.httpserver.*;
-
-import net.thegreshams.firebase4j.error.*;
-import net.thegreshams.firebase4j.model.*;
 
 import java.io.*;
 import java.net.*;
